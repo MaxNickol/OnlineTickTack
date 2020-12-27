@@ -5,7 +5,7 @@ import {RoomsContext} from '../Context/Rooms.context';
 import {Switch, Route, Redirect} from 'react-router-dom';
 import socket from '../Connection/socket_connection';
 import axios from 'axios'
-
+import {Spring} from 'react-spring/renderprops';
 
 export const Rooms = () => { 
 
@@ -84,49 +84,53 @@ export const Rooms = () => {
 
     return (
         <>
-        
-        <button className="btn-width btn btn-success ml-auto mr-auto mt-5" onClick={ModalHandler}>Create a room!</button>
-        {modalWindow}
-            <div className="rooms-wrapper" >
-                {context.filtered.length === 0 ? 
-                rooms.map((room, index) => {
-                    return (
-                       <div className="lobby-wrapper text-break" key={index} onClick={() => roomClicker(room.id)}>
-                        <div className="header">
-                            {room.title}
-                        </div>
-                        <div className="description">
-                            {room.description}
-                        </div>
-                        <div className="tags">
-                            <div className="form-control" disabled={true} >{room.tags}</div>
-                        </div>
-                    </div>
-                    )
-                }) 
-                :
-                context.filtered.map((room, index) => {
-                    return (
-                        <div className="lobby-wrapper text-break" key={index} onClick={() => roomClicker(room.id)}>
-                            <div className="header">
-                                {room.title}
-                            </div>
-                            <div className="description">
-                                {room.description}
-                            </div>
-                            <div className="tags">
-                                <div className="form-control" disabled={true} >{room.tags}</div>
-                            </div>
-                        </div>
+        <Spring 
+        config={{duration: 5000}}
+        form={{opacity:0}}
+        to={{opacity:1}}
+        >
+            {props => (
+                <>
+                    <button className="btn-width btn btn-success ml-auto mr-auto mt-5" style={props} onClick={ModalHandler}>Create a room!</button>
+                        {modalWindow}
+                        <div className="rooms-wrapper" style={props}>
+                            {context.filtered.length === 0 ? 
+                                rooms.map((room, index) => {
+                                    return (
+                                <div className="lobby-wrapper text-break" key={index} onClick={() => roomClicker(room.id)}>
+                                        <div className="header">
+                                        {room.title}
+                                    </div>
+                                    <div className="tags">
+                                        <div className="form-control" disabled={true} >{room.tags}</div>
+                                    </div>
+                                </div>
                         )
                     }) 
-                }
-                <Switch>
-                    <Route path="/game_lobby">
-                        <Field redir={{lobbyRedir, setRedir}}/>
-                    </Route>
-                </Switch>
-            </div>
+                    :
+                    context.filtered.map((room, index) => {
+                        return (
+                            <div className="lobby-wrapper text-break" style={props} key={index} onClick={() => roomClicker(room.id)}>
+                                <div className="header text-break">
+                                    {room.title}
+                                </div>
+                                <div className="tags text-break">
+                                    <div className="form-control" disabled={true} >{room.tags}</div>
+                                </div>
+                            </div>
+                            )
+                        }) 
+                    }
+                    <Switch>
+                        <Route path="/game_lobby">
+                            <Field redir={{lobbyRedir, setRedir}}/>
+                        </Route>
+                    </Switch>
+                </div>
+                </>
+            )}
+        </Spring>
+        
         </>
     )
 }

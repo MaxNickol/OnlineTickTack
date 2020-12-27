@@ -3,7 +3,7 @@ const server = require('http').createServer(app);
 const cors = require('cors');
 const io = require('socket.io')(server, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: "https://guarded-wave-01892.herokuapp.com",
     }
 });
 const bodyParser = require('body-parser');
@@ -29,6 +29,14 @@ const onListening = () => {
 
 server.on('listening', onListening);
 
+
+if(process.env.NODE_ENV == 'production') {
+    app.use(express.static('client/build'));
+
+    app.get('/', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+}
 
 db.sequelize.sync().then(() => { 
     server.listen(port);

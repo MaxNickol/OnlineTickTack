@@ -32,7 +32,7 @@ export const Login = () => {
                 
                 context.login(response.data.token, response.data.userId, response.data.username);
                 setMessage(response.data.error);
-                window.location.reload();
+                setTimeout(() => window.location.reload(), 1500);
             }
             else if(response.data.error) {
                 setMessage(response.data.error)

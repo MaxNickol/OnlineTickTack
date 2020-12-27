@@ -20,12 +20,16 @@ html, body {
     height: 100%;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
 }
 
 .navbar {
     font-size: 18px !important;
     font-weight: 600;
-    width: 100% !important;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly !important;
 }
 
 
@@ -120,6 +124,8 @@ a:hover {
     min-height: calc(100% / 5);
     max-height: fit-content;
     margin: 10px;
+    box-shadow: 5px 5px 20px rgba(0, 100, 0, 0.9);
+    transition: 0.5s ease-in-out;
 }
 
 .header { 
@@ -147,7 +153,7 @@ a:hover {
     margin-bottom: 1px;
     margin-top: 1px;
     outline: none;
-    width: 150px;
+    width: 205px;
 }
 
 .react-tagsinput {
@@ -176,7 +182,7 @@ a:hover {
 }
 
 .form-control { 
-    min-height: 10px !important;
+    height: fit-content !important;
 }
 
 
@@ -184,8 +190,34 @@ a:hover {
     right: 90%;
 }
 
+.search { 
+    margin: 0;
+}
 
-@media (max-width: 650px) { 
+.tags {
+    transition: 0.5s ease-in-out;
+}
+
+
+/* Events */
+.lobby-wrapper:hover {
+    cursor: pointer;
+    transform: scale(1.04);
+}
+
+.tags:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+    box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.5);
+}
+
+@media (max-width: 1170px) { 
+    .form-control {
+        height: fit-content !important;
+    }
+}
+
+@media (max-width: 870px) { 
     .Login-wrapper { 
         width: 260px;
     }
@@ -193,24 +225,131 @@ a:hover {
     .lobby-wrapper {
         display: flex;
         flex-direction: column;
-        font-size: 14px;
+        font-size: 22px;
         justify-content: space-around;
         align-items: center; 
         background-color: rgba(0, 100, 0, 0.5);
         border: 3px solid rgba(0, 128, 0, 0.7);
         border-radius: 10px;
-        width: calc(100% / 6);
+        width: calc(100% / 2);
         height: calc(100% / 4);
         margin: 5px;
+    }
+    .tags {
+       font-size: 15px;
+    }
+    .form-control {
+        height: fit-content;
+        margin-left: 0 !important;
+    }
+    .navbar-brand {
+        font-size: 15px !important;
+        margin-right: 0 !important;
+    }
+
+    .btn-danger {
+        width: fit-content;
+        font-size: 15px !important;
+    }
+    
+    .items-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .react-tagsinput-input {
+        background: transparent;
+        border: 0;
+        color: rgb(20, 100, 0);
+        font-family: sans-serif;
+        font-size: 14px;  
+        outline: none;
+        width: 120px;
+    }
+
+    .search {
+        margin: 0 !important;
+        width: 150px;
+    }
+    .react-tagsinput-tag {
+        
+        word-break: break-all;
+    }
+
+}
+
+
+@media (max-width: 710px) {
+    .navbar{ 
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-evenly !important;
+        align-items: center !important;
+        font-size: 15px !important;
+    }
+    .navbar-brand {
+        font-size: 15px !important;
+        margin-right: 0 !important;
+    }
+
+    .username {
+        width: 100px;
+    }
+
+    .flex-row {
+        flex-direction: column !important; 
+    }
+
+    .search {
+        margin-top: 15px !important;
+        margin-left: 15px !important;
+        width: 150px;
+    }
+
+    .items-wrapper {
+        margin-top: 15px;
+
+    }
+
+    .username {
+        margin-left: 45px !important;
+    }
+
+
+    .react-tagsinput-input {
+        background: transparent;
+        border: 0;
+        color: rgb(20, 100, 0);
+        font-family: sans-serif;
+        font-size: 14px;  
+        outline: none;
+        width: 100px;
+        height: 30px;
+    }
+
+    .react-tagsinput-tag {
+        max-width: 100px;
+        word-break: break-all;
     }
 }
 
 
 
-
-@media (max-width: 450px) { 
+@media (max-width: 460px) { 
 
     .lobby-wrapper {
-        font-size: 10px;
+        font-size: 22px;
+        height: calc(100% / 2);
+    }
+    .form-control {
+        font-size: 12px !important; 
+        height: fit-content !important;
+    }
+
+    .btn-danger {
+        width: fit-content;
+        font-size: 15px !important;
     }
 }

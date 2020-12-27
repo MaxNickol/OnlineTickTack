@@ -4,6 +4,7 @@ import {Cell} from './Cell.jsx';
 import '../styles/TickTack.css';
 import socket from '../Connection/socket_connection';
 import queryString from 'query-string';
+import {Spring} from 'react-spring/renderprops';
 
 export const Field = () => {
     
@@ -22,7 +23,6 @@ export const Field = () => {
     const [list_of_users, setList] = useState([]);
     const [leave, setLeave] = useState(false);
 
-    console.log(list_of_users);
 
     const clickHandler = (value) => { 
         const copyField = game.field;
@@ -74,6 +74,8 @@ export const Field = () => {
             const [a, b, c] = fieldCells[i];
             if(field[a] && field[a] === field[b] && field[a] === field[c]) return field[a];
         }
+
+        if(field.includes(null) == false) return false;
         return null;
     }
 
@@ -88,6 +90,8 @@ export const Field = () => {
         })
 
         socket.emit("room", room);
+
+        
         
     }, [sys_msg])
 
@@ -120,6 +124,9 @@ export const Field = () => {
     if(winner) {
         modalWinner = `The winner is ${winner}`;
     }
+    else if(winner === false) {
+        modalWinner = "It's draw!"
+    }
     else { 
         modalWinner = '';
     }
@@ -127,27 +134,66 @@ export const Field = () => {
     
     return(
         <>
-        <div className="system-wrapper">
-            <h3>{sys_msg.user} {sys_msg.message}</h3>
-        </div>
-        <h3>Room number #{sys_room}</h3>
-        <h4>{modalWinner}</h4>
-        <button className="btn btn-primary w-25" onClick={()=> LeaveHandler()}>Leave the room</button> 
-
-        <h3>Connected users:</h3>
-        {list_of_users.map((user, index)=> (
-            <div className="username" key={index}>{user.username}</div>
-        ))}
-
-            {list_of_users.length < 2 ? <h3>Waiting for the opponent</h3> 
-            : (
-                <div className="field-wrapper">
-                    <div className="field">
-                        {cellArr}
-                    </div>
+        {sys_msg.message ? 
+        (<Spring 
+            config={{duration: 2000}}
+            from={{opacity:0, marginTop: -500}}
+            to={{opacity:1, marginTop: 35}}
+            >
+                {props => <div className="system-wrapper" style={props}>
+                            <p className="system-message">{sys_msg.message}</p>
+                        </div>}
+            </Spring>) : ''
+        }
+        
+        <Spring
+        config={{duration: 800}}
+        from={{opacity:0, marginLeft:500}}
+        to={{opacity:1, marginLeft:10}}>
+            {props => (
+                <div className="wrapper" style={props}>
+                <p>Room number #{sys_room}</p>
+                <p>{modalWinner}</p>
                 </div>
-            )
-            }
+            )}
+           
+        </Spring>
+       
+       <Spring
+       config={{duration: 800}}
+       from={{opacity: 0, marginLeft: -500}}
+       to={{opacity:1, marginLeft: 10}}
+       >
+           {props => (
+               <>
+                <button style={props} className="btn btn-primary btn-wrap" onClick={()=> LeaveHandler()}>Leave the room</button> 
+                <div style={props} className="connected-wrapper">
+                    <p>Connected users:</p>
+                        {list_of_users.map((user, index)=> (
+                            <div className="users-list" key={index}>{user.username}</div>
+                        ))}
+                </div>
+                </>
+           )}
+       
+        </Spring>
+                {list_of_users.length < 2 ? <h3 className="ml-2 mt-5">Waiting for the opponent...</h3> 
+                : 
+                <Spring
+                config={{duration: 1000}}
+                from={{opacity:0}}
+                to={{opacity:1}}
+                >
+                    {props => (
+                        <div className="field-wrapper" style={props}>
+                            <div className="field">
+                                {cellArr}
+                            </div>
+                    </div>
+                    )}
+                </Spring>
+                }
+       
         </>
     )
 }
