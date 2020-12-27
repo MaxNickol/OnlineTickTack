@@ -36,7 +36,7 @@ export const Rooms = () => {
  
 
     const roomCreate = async () => { 
-        const response = await axios.post('/rooms', {
+        const response = await axios.post('/roomsAll', {
             title: form.title,
             tags: tags,
         });

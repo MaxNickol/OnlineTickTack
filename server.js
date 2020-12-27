@@ -148,15 +148,15 @@ app.post('/auth/register', async (req, res) => {
 }
 })
 
-app.get('/rooms', async (req, res) => { 
+// app.get('/roomsAll', async (req, res) => { 
 
-    const rooms = await db.room.findAll();
+//     const rooms = await db.room.findAll();
 
-    res.status(200).json({rooms: rooms});
+//     res.status(200).json({rooms: rooms});
 
-})
+// })
 
-app.post('/rooms', async (req, res) => { 
+app.post('/roomsAll', async (req, res) => { 
 
     const title = req.body.title.trim();
     const tags = req.body.tags;
