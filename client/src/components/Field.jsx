@@ -138,7 +138,7 @@ export const Field = () => {
         (<Spring 
             config={{duration: 2000}}
             from={{opacity:0, marginTop: -500}}
-            to={{opacity:1, marginTop: 35}}
+            to={{opacity:1, marginTop: 10}}
             >
                 {props => <div className="system-wrapper" style={props}>
                             <p className="system-message">{sys_msg.message}</p>
