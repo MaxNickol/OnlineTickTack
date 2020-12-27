@@ -111,10 +111,9 @@
     }
 
     .connected-wrapper {
-        position: static;
+        position: fixed;
         width: 25%;
         left: 68%;
-        
         background-color: rgba(40, 167, 69);
         margin-left: 1%;
         font-size: 22px;
@@ -148,6 +147,10 @@
         flex-direction: column;
         justify-content: center;
         align-items:center;
+    }
+
+    .connected-wrapper {
+        display: none;
     }
 
     .system-wrapper {
