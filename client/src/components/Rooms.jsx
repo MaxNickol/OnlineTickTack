@@ -75,9 +75,11 @@ export const Rooms = () => {
 
     useEffect(() => { 
         
+        const response = await axios.get('/rooms');
+        setRooms(response.data.rooms);
         socket.on('getAllRooms', (rooms) => setRooms(rooms));
 
-    });
+    }, [rooms]);
     
 
     if(lobbyRedir) return <Redirect to={`/game_lobby?room=${lobbyId}`}/>
