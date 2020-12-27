@@ -55,7 +55,7 @@ export const Login = () => {
 
             if(response.data.token) {
                 context.login(response.data.token, response.data.userId, response.data.username);
-                window.location.reload();
+                window.location.href="/";
             }
 
         }
