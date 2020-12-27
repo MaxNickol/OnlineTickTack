@@ -73,7 +73,7 @@ export const Rooms = () => {
        
     }
 
-    useEffect(() => { 
+    useEffect(async() => { 
         
         const response = await axios.get('/rooms');
         setRooms(response.data.rooms);
