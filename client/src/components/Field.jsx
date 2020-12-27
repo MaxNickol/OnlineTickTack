@@ -49,7 +49,7 @@ export const Field = () => {
     const LeaveHandler = () => {
         history.push('/rooms');
         setLeave(!leave);
-        window.location.reload()
+        window.location.href='/';
     }
 
     const drawField =(value) => { 

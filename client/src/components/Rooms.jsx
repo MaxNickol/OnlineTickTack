@@ -43,7 +43,7 @@ export const Rooms = () => {
 
         if(response.status === 201) {
             setMessage(response.data.message);
-            // window.location.reload();
+            window.location.href = '/';
         }
 
         setModal(!modal);
@@ -75,8 +75,8 @@ export const Rooms = () => {
 
     useEffect(async() => { 
         
-        const response = await axios.get('/rooms');
-        setRooms(response.data.rooms);
+        // const response = await axios.get('/rooms');
+        // setRooms(response.data.rooms);
         socket.on('getAllRooms', (rooms) => setRooms(rooms));
 
     }, [rooms]);
