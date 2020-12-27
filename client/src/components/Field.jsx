@@ -133,7 +133,7 @@ export const Field = () => {
     //
     
     return(
-        <>
+        <div className="tick-wrapper">
         {sys_msg.message ? 
         (<Spring 
             config={{duration: 2000}}
@@ -194,6 +194,6 @@ export const Field = () => {
                 </Spring>
                 }
        
-        </>
+        </div>
     )
 }
