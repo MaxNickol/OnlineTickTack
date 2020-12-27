@@ -60,6 +60,7 @@
 .connected-wrapper {
     position: absolute;
     top: 50%;
+    margin-top: 10px;
     left: 78%;
     transform: translate(0, -50%);
     background-color: rgba(40, 167, 69);
@@ -106,11 +107,8 @@
 
 
 @media (max-width:1210px) {
-    .tick-wrapper {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items:center;
+    .system-wrapper {
+        display: none;
     }
 
     .connected-wrapper {
@@ -151,9 +149,9 @@
         justify-content: center;
         align-items:center;
     }
+
     .system-wrapper {
-        width: 25%;
-        top: 3%;
+       display: none;
     }
 }
 
@@ -166,14 +164,11 @@
         align-items:center;
     }
     .connected-wrapper {
-        position: static;
-        
-        width: fit-content;
+       display: none;
     }
 
     .system-wrapper {
-        width: 25%;
-        top: 15%;
+        display: none;
     }
 }
 
@@ -190,7 +185,6 @@
     }
 
     .connected-wrapper {
-        position: relative;
         left: 0px;
     }
 }
