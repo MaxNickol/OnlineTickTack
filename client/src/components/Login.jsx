@@ -32,7 +32,7 @@ export const Login = () => {
                 
                 context.login(response.data.token, response.data.userId, response.data.username);
                 setMessage(response.data.error);
-                setTimeout(() => window.location.href = '/', 1500);
+                setTimeout(() => window.location.href = '/', 600);
             }
             else if(response.data.error) {
                 setMessage(response.data.error)

@@ -39,8 +39,8 @@ export const Navbar = ({onClick, onChange, tags}) => {
             <nav className="navbar navbar-expand navbar-light bg-success">
                {block}
                 <div className="items-wrapper">
-                    <Link className="navbar-brand pt-0" to="/rooms" onClick={() => window.location.reload()}>Tick-Tack</Link>
-                    <Link className=" rooms pt-0 " to="/rooms" onClick={() => window.location.reload()}>Rooms</Link>       
+                    <Link className="navbar-brand pt-0" to="/" onClick={() => window.location.reload()}>Tick-Tack</Link>
+                    <Link className=" rooms pt-0 " to="/" onClick={() => window.location.reload()}>Rooms</Link>       
                     {btn}
                 </div>
             </nav>
