@@ -153,6 +153,7 @@
 @media(max-width:710px) {
     .connected-wrapper {
         top: 40%;
+        width: fit-content;
     }
 
     .system-wrapper {
