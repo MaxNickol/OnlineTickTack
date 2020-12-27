@@ -36,14 +36,14 @@ export const Rooms = () => {
  
 
     const roomCreate = async () => { 
-        const response = await axios.post('/roomsAll', {
+        const response = await axios.post('/rooms', {
             title: form.title,
             tags: tags,
         });
 
         if(response.status === 201) {
             setMessage(response.data.message);
-            window.location.reload();
+            // window.location.reload();
         }
 
         setModal(!modal);
@@ -77,7 +77,7 @@ export const Rooms = () => {
         
         socket.on('getAllRooms', (rooms) => setRooms(rooms));
 
-    }, [rooms]);
+    });
     
 
     if(lobbyRedir) return <Redirect to={`/game_lobby?room=${lobbyId}`}/>
